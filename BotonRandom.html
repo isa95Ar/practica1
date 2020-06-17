@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+<header>
+    <title>????</title>
+
+</header>
+<style>
+    p {
+        color: purple;
+        text-transform: uppercase;
+        font-size: 75px;
+        font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+    }
+</style>
+
+<body onload="Fondo()">
+    <img id="Banner" src="Banner4.png" /><br>
+    <img id="Escapado" src="EscapadoBlanco.png" /><br>
+    <img id="Muerto" src="GoodEnding.png" />
+    <img id="Morido" src="Death.gif" />
+    <p id="Puntaje"></p>
+
+    <input id="Boton1" type="image" src="PurpleGroovin.gif" onclick="LocationRandom();Temp();Contador();Voeltas()" />
+</body></br>
+</body>
+
+<script>
+    var tiempo;
+    var puntaje = 0;
+    var Vueltas = 0;
+    var UntilD = 0;
+    var Der = 0;
+    var Arri = 0;
+    let sEstilo;
+
+    document.getElementById("Escapado").style.display = "None";
+    document.getElementById("Morido").style.display = "None";
+    document.getElementById("Muerto").style.display = "None";
+
+    function TimerClear() {
+        window.clearInterval(tiempo);
+    }
+    function Fondo() {
+        document.body.style.backgroundImage = "url('Fondo.PNG')";
+    }
+
+    function Temp() {
+        window.clearInterval(tiempo);
+        tiempo = setInterval("LocationRandom()", 2000);
+
+    }
+    function LocationRandom() {
+        if (Vueltas <= 30) {
+            Der = (Math.floor(Math.random() * 70));
+            Arri = (Math.floor(Math.random() * 20));
+            /*document.getElementById("Boton1").style.right = Der;
+            document.getElementById("Boton1").style.top = Arri;*/
+            let sEstilo = "margin-top:" + Arri + "%;margin-left:" + Der + "%;";
+            document.getElementById("Boton1").setAttribute("style", sEstilo);
+          //  window.clearInterval(tiempo);
+            document.getElementById("Banner").style.display = "None";
+        }
+        Vueltas = Vueltas + 1;
+        if (Vueltas >= 30) {
+            document.getElementById("Boton1").style.display = "None";
+            document.getElementById("Escapado").style.display = "Block";
+        }
+    }
+    function Contador() {
+        Puntaje = Puntaje + 1;
+        if (Puntaje >= 10) {
+            document.getElementById("Boton1").style.display = "None";
+            document.getElementById("Morido").style.display = "Block";
+            document.getElementById("Muerto").style.display = "Block";
+
+        }
+    }
+    function Voeltas() {
+        if (Vueltas >= 1) {
+            puntaje = puntaje + 1;
+            document.getElementById("Puntaje").innerHTML = puntaje
+        }
+    }
+
+
+</script>
+
+</html>
